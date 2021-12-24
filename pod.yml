@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
    name: practical-pod
-spec:
+pec:
    containers:
    - name: 002cce884569
      image: williamc160/practical:1.0
