@@ -1,0 +1,21 @@
+  GNU nano 2.9.3                                            pod.yml
+
+apiVersion: v1
+kind: Pod
+metadata:
+   name: practical-pod
+spec:
+   containers:
+   - name: 002cce884569
+     image: williamc160/practical-2:2.0
+     ports:
+     - containerPort: 8080
+
+
+
+
+
+
+
+
+
