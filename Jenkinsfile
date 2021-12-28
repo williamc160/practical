@@ -15,7 +15,7 @@ node {
             }    
         }     
        stage('Push image') {
-docker.withRegistry('https://registry.hub.docker.com', 'git') {            
+docker.withRegistry('https://hub.docker.com/repository/docker/williamc160/practical-2', 'git') {            
        app.push("${env.BUILD_NUMBER}")            
        app.push("latest")        
               }    
