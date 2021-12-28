@@ -7,7 +7,12 @@ node {
       stage('Build image') {         
        
             app = docker.build("williamc160/practical-2")    
-       }     
+       }
+      stage('Login') {
+               steps {
+		      sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+		}
+	}     
       stage('Test image') {           
             app.inside {            
              
@@ -19,5 +24,5 @@ node {
 		sh 'docker push williamc160/practical-2:latest'
 	}
            }
-        }
+    }
 
