@@ -15,10 +15,9 @@ node {
             }    
         }     
        stage('Push image') {
-docker.withRegistry('williamc160/practical-2', 'git') {            
-       app.push("${env.BUILD_NUMBER}")            
-       app.push("latest")        
-              }    
+	steps {
+		sh 'docker push williamc160/practical-2:latest'
+	}
            }
         }
 
