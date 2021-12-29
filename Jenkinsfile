@@ -15,21 +15,13 @@ pipeline {
      }
     }
    }
-stage(login){
- steps{
-        withCredentials([usernamePassword( credentialsId: 'williamc160', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]){
-        bat "docker login -u $USER -p $PASSWORD ${registry_url}"
-        docker.withRegistry("https://index.docker.io/v1/", "dockerhub")
+  stage('Push image') {
+  steps{
+        withDockerRegistry([ credentialsId: "dockerhub", url: "https://index.docker.io/v1/" ]) {
+        bat "docker push williamc160/practical-2:2.0"
+     }
     }
    }
-  }
-
-  stage('Push image') {
-	steps{
-            bat "docker push williamc160/practical-2:$BUILD_NUMBER"
-        }
-    }
-
   stage('Cleaning up') {
       steps { 
       sh "docker rmi $registry:$BUILD_NUMBER" 
