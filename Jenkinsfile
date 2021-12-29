@@ -17,7 +17,7 @@ pipeline {
   stage('Push image') {
   steps{
         withDockerRegistry([ credentialsId: "dockerhub", url: "https://index.docker.io/v1/" ]) {
-        sh "docker push williamc160/practical-2:2.0"
+        sh "docker push williamc160/practical-2"
      }
     }
    }
