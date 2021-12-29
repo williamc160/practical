@@ -21,7 +21,7 @@ pipeline {
         bat "docker login -u $USER -p $PASSWORD ${registry_url}"
         docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
             // Push your image now
-            bat "docker push williamc160/practical-2:$BUILD_NUMBER"
+            bat "docker push williamc160/practical-2:$BUILD_NUMBER"}
         }
     }
 }
