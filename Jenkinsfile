@@ -15,13 +15,16 @@ pipeline {
     }
    }
   stage('Push image') {
-    steps{
-    withDockerRegistry([ credentialsId: "williamc160", url: "https://hub.docker.com/repository/docker/williamc160/practical-2" ]) {
-    bat "docker push williamc160/practical-2:build"
-      }
+    withCredentials([usernamePassword( credentialsId: 'williamc160', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+        def registry_url = "https://hub.docker.com/repository/docker/williamc160/practical-2"
+        bat "docker login -u $USER -p $PASSWORD ${registry_url}"
+        docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
+            // Push your image now
+            bat "docker push williamc160/practical-2:$BUILD_NUMBER"
+        }
     }
-  }
-  stage('Cleaning up') { 
+}
+  stage('Cleaning up') {
       steps { 
       sh "docker rmi $registry:$BUILD_NUMBER" 
       }
