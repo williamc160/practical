@@ -33,8 +33,9 @@ stage('Build-Test'){
             } catch (err) {
                 error "Test ERROR: container has failed, you messed up"
                 echo err
-            } 
-        }
-   }
-  }
+                }  
+          } 
+ }
+ }
+}
 }
