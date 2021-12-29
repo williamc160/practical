@@ -7,11 +7,6 @@ pipeline {
   }
   agent any
   stages {
- stage('Cloning our Git') { 
-     steps { 
-     git 'https://github.com/williamc160/practical.git' 
-    }
-  } 
     stage('Building our image') {
       steps{
          script { 
