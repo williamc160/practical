@@ -1,18 +1,23 @@
 pipeline {
-  environment {
-    DOCKERHUB_CREDENTIALS = ('WILLIAMC160')
-}
+ environment { 
+        registry = "williamc160/practical-2" 
+        registryCredential = 'williamc160' 
+        dockerImage = 'practical' 
+
+  }
   agent any
   stages {
+ stage('Cloning our Git') { 
+     steps { 
+     git 'https://github.com/williamc160/practical.git' 
+    }
+  } 
     stage('Building our image') {
       steps{
-        sh 'docker build -t williamc160/practical-2:latest .'
+         script { 
+            dockerImage = docker.build registry + ":$BUILD_NUMBER" 
     }
-  }
-  stage('Login'){
-    steps{
-       sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-     }
+   }
   }
 
   stage('push'){
@@ -20,5 +25,10 @@ pipeline {
       sh 'docker push williamc160/practical-2:latest'
     }
   }
-}
+stage('Cleaning up') { 
+      steps { 
+      sh "docker rmi $registry:$BUILD_NUMBER" 
+      }
+    } 
+  }
 }
