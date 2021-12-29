@@ -26,10 +26,10 @@ stage(login){
 
   stage('Push image') {
 	steps{
-            bat "docker push williamc160/practical-2:$BUILD_NUMBER"}
+            bat "docker push williamc160/practical-2:$BUILD_NUMBER"
         }
     }
-}
+
   stage('Cleaning up') {
       steps { 
       sh "docker rmi $registry:$BUILD_NUMBER" 
