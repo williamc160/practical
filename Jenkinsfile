@@ -14,12 +14,17 @@ pipeline {
     }
    }
   }
-
-  stage('push'){
+  stage('Push image') {
     steps{
-      sh 'docker push williamc160/practical-2:latest'
+    withDockerRegistry([ credentialsId: "williamc160", url: "https://hub.docker.com/repository/docker/williamc160/practical-2" ]) {
+    bat "docker push williamc160/practical-2:build"
+      }
     }
-  }
+ # stage('push'){
+  #  steps{
+   #   sh 'docker push williamc160/practical-2:latest'
+    #}
+  #}
 stage('Cleaning up') { 
       steps { 
       sh "docker rmi $registry:$BUILD_NUMBER" 
