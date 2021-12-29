@@ -2,7 +2,7 @@ pipeline {
  environment { 
         registry = "williamc160/practical-2" 
         registryCredential = 'dockerhub' 
-        dockerImage = 'practical' 
+        dockerImage = 'practical-2' 
 
   }
   agent any
