@@ -15,6 +15,7 @@ pipeline {
     }
    }
   stage('Push image') {
+	steps{
     withCredentials([usernamePassword( credentialsId: 'williamc160', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
         def registry_url = "https://hub.docker.com/repository/docker/williamc160/practical-2"
         bat "docker login -u $USER -p $PASSWORD ${registry_url}"
