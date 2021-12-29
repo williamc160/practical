@@ -3,7 +3,7 @@ pipeline {
         registry = "williamc160/practical-2" 
         registryCredential = 'dockerhub' 
         dockerImage = 'practical-2' 
-        def registry_url = "https://hub.docker.com/repository/docker/williamc160/practical-2"
+        def registry_url = "https://index.docker.io/v1/"
 
   }
   agent any
