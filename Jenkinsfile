@@ -17,7 +17,7 @@ pipeline {
    stage('Push image') {
      steps{
      withDockerRegistry([ credentialsId: "dockerhub", url: "https://index.docker.io/v1/"]) { 
-     bat "docker push dockerImage"
+     sh "docker push dockerImage"
     } 
    }
   }
