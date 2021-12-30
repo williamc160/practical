@@ -29,12 +29,13 @@ pipeline {
         status = sh(returnStdout: true, script: "container-test test --image 'dockerImage' --config './practical/Utest.yaml' --json | jq .Fail") as Integer
         if (status != 0) {                            
         error 'Image Test has failed'
-     }
-       } catch (err) {
-         error "Test ERROR: container has failed, you messed up"
+                          }
+        } catch (err) {
+        error "Test ERROR: container has failed, you messed up"
       echo err
     } 
    }
   }
+ }
 }
 }
